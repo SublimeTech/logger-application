@@ -14,12 +14,10 @@ namespace LoggerApi.Controllers
 {
     public class RegisterController : ApiController
     {
-        private IRepository _repository;
         private IApplicationService _appService;
 
-        public RegisterController(IRepository repository, IApplicationService appService)
+        public RegisterController(IApplicationService appService)
         {
-            _repository = repository;
             _appService = appService;
         }
 
