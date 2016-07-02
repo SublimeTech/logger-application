@@ -3,21 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LoggerApi.Models;
+using LoggerApi.Models.Mappers;
+using LoggerApi.Models.Repositories;
 using MlkPwgen;
 
 namespace LoggerApi.Services
 {
     public class ApplicationService : IApplicationService
     {
+        private IRepository _repository;
+        private IApplicationMapper _mapper;
+
+        public ApplicationService(IRepository repository, IApplicationMapper mapper)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
         public ApplicationModel CreateNewApplication(string displayName)
         {
-            //TODO: Create an application and save it in the DB.
-            return new ApplicationModel()
+            if (string.IsNullOrEmpty(displayName))
             {
-                DisplayName = displayName,
-                ApplicationId = PasswordGenerator.Generate(32),
-                Secret = PasswordGenerator.Generate(32)
+                return null;
+            }
+
+            var model = new ApplicationModel()
+            {
+                DisplayName     = displayName,
+                ApplicationId   = PasswordGenerator.Generate(32),
+                Secret          = PasswordGenerator.Generate(25)
             };
+
+            var application = _mapper.MappTo(model);
+            try
+            {
+                _repository.Save(application);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return model;
         }
     }
 }

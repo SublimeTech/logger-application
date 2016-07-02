@@ -139,12 +139,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Models\Entities\Application.hbm.xml" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -170,7 +172,10 @@
     <Compile Include="Infrastructure\ISessionManager.cs" />
     <Compile Include="Infrastructure\SessionManager.cs" />
     <Compile Include="Models\ApplicationModel.cs" />
+    <Compile Include="Models\Entities\Application.cs" />
     <Compile Include="Models\Entities\Log.cs" />
+    <Compile Include="Models\Mappers\ApplicationMapper.cs" />
+    <Compile Include="Models\Mappers\IApplicationMapper.cs" />
     <Compile Include="Models\Repositories\GenericRepository.cs" />
     <Compile Include="Models\Repositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

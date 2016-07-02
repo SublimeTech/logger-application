@@ -31,6 +31,10 @@ namespace LoggerApi.Controllers
         public IHttpActionResult Post([FromBody] string displayName)
         {
             var application = _appService.CreateNewApplication(displayName);
+            if (application == null)
+            {
+                return BadRequest();
+            }
             return Ok(application);
         }
     }

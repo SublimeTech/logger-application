@@ -7,6 +7,7 @@ using System.Web.Routing;
 using LoggerApi.Controllers;
 using LoggerApi.Infrastructure;
 using LoggerApi.Models.Entities;
+using LoggerApi.Models.Mappers;
 using LoggerApi.Models.Repositories;
 using LoggerApi.Services;
 using Microsoft.ApplicationInsights.DataContracts;
@@ -38,6 +39,7 @@ namespace LoggerApi
             container.Bind<ISessionManager>().To<SessionManager>();
             container.Bind<IRepository>().To<GenericRepository>();
             container.Bind<IApplicationService>().To<ApplicationService>();
+            container.Bind<IApplicationMapper>().To<ApplicationMapper>();
         }
     }
 }
