@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+  xmlns="urn:nhibernate-mapping-2.2"
+  assembly="LoggerApi"
+  namespace="LoggerApi.Models.Entities">
+
+  <class name="Log" table="log">
+    <id name="LogId" column="log_id">
+      <generator class="native" />
+    </id>
+
+    <property name="Logger" column="logger"/>
+    <property name="Level" column="level"/>
+    <property name="Message" column="message"/>
+    <property name="ApplicationId" column="application_id"/>
+  </class>
+</hibernate-mapping>

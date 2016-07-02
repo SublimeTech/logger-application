@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Routing;
 using LoggerApi.Controllers;
 using LoggerApi.Infrastructure;
+using LoggerApi.Models.Entities;
 using LoggerApi.Models.Repositories;
 using Microsoft.ApplicationInsights.DataContracts;
 using NHibernate;
@@ -23,7 +24,7 @@ namespace LoggerApi
             // NHibernate configuration
             var configuration = new NHibernate.Cfg.Configuration();
             configuration.Configure();
-            configuration.AddAssembly(typeof(RegisterController).Assembly);
+            configuration.AddAssembly(typeof(Log).Assembly);
             ISessionFactory sessionFactory = configuration.BuildSessionFactory();
 
             // Ninject

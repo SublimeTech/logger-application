@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using LoggerApi.Models.Entities;
 using LoggerApi.Models.Repositories;
 
 namespace LoggerApi.Controllers
@@ -17,10 +18,10 @@ namespace LoggerApi.Controllers
             _repository = repository;
         }
 
-        public string Get()
+        public IHttpActionResult Get(int id)
         {
-
-            return "Hola";
+            var log =_repository.GetById<Log>(id);
+            return Ok(log);
         }
 
         public string Post()

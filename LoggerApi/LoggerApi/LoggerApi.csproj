@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <EmbeddedResource Include="Models\Entities\Log.hbm.xml" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Web.config" />
@@ -163,6 +164,7 @@
     </Compile>
     <Compile Include="Infrastructure\ISessionManager.cs" />
     <Compile Include="Infrastructure\SessionManager.cs" />
+    <Compile Include="Models\Entities\Log.cs" />
     <Compile Include="Models\Repositories\GenericRepository.cs" />
     <Compile Include="Models\Repositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
