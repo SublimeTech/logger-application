@@ -8,6 +8,7 @@ using LoggerApi.Controllers;
 using LoggerApi.Infrastructure;
 using LoggerApi.Models.Entities;
 using LoggerApi.Models.Repositories;
+using LoggerApi.Services;
 using Microsoft.ApplicationInsights.DataContracts;
 using NHibernate;
 using Ninject;
@@ -33,8 +34,10 @@ namespace LoggerApi
             // Set Web API Resolver
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(container);
             container.Bind<ISessionFactory>().ToConstant(sessionFactory);
+
             container.Bind<ISessionManager>().To<SessionManager>();
             container.Bind<IRepository>().To<GenericRepository>();
+            container.Bind<IApplicationService>().To<ApplicationService>();
         }
     }
 }
