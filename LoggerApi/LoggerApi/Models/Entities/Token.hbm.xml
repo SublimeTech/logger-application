@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+  xmlns="urn:nhibernate-mapping-2.2"
+  assembly="LoggerApi"
+  namespace="LoggerApi.Models.Entities">
+
+  <class name="Token" table="token">
+    <id name="TokenId" column="token_id">
+      <generator class="guid" />
+    </id>
+
+    <property name="ApplicationId" column="application_id"/>
+    <property name="AccessToken" column="access_token"/>
+    <property name="IssuedOn" column="issued_on"/>
+    <property name="ExpiresOn" column="expires_on"/>
+  </class>
+</hibernate-mapping>

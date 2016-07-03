@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LoggerApi.Models;
+using LoggerApi.Models.Entities;
 using LoggerApi.Models.Mappers;
 using LoggerApi.Models.Repositories;
 using MlkPwgen;
@@ -43,6 +44,16 @@ namespace LoggerApi.Services
                 return null;
             }
             return model;
+        }
+
+        public string Authenticate(string applicationId, string secret)
+        {
+            var application = _repository.GetById<Application>(applicationId);
+            if (application == null || !application.Secret.Equals(secret))
+            {
+                return null;
+            }
+            return application.ApplicationId;
         }
     }
 }

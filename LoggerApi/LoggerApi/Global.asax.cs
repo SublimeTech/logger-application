@@ -38,7 +38,11 @@ namespace LoggerApi
 
             container.Bind<ISessionManager>().To<SessionManager>();
             container.Bind<IRepository>().To<GenericRepository>();
+
             container.Bind<IApplicationService>().To<ApplicationService>();
+            container.Bind<ITokenService>().To<TokenService>();
+            container.Bind<ILogService>().To<LogService>();
+
             container.Bind<IApplicationMapper>().To<ApplicationMapper>();
         }
     }

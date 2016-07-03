@@ -109,6 +109,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Models\Entities\Application.hbm.xml" />
+    <EmbeddedResource Include="Models\Entities\Token.hbm.xml" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -163,9 +165,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\AuthorizationRequiredAttribute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BrowserJsonFormatter.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Filters\BasicAuthenticationIdentity.cs" />
+    <Compile Include="Filters\GenericAuthenticationFiler.cs" />
+    <Compile Include="Filters\LoggerApiAuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,13 +182,21 @@
     <Compile Include="Models\ApplicationModel.cs" />
     <Compile Include="Models\Entities\Application.cs" />
     <Compile Include="Models\Entities\Log.cs" />
+    <Compile Include="Models\Entities\Token.cs" />
+    <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\Mappers\ApplicationMapper.cs" />
     <Compile Include="Models\Mappers\IApplicationMapper.cs" />
     <Compile Include="Models\Repositories\GenericRepository.cs" />
     <Compile Include="Models\Repositories\IRepository.cs" />
+    <Compile Include="Models\AccessTokenModel.cs" />
+    <Compile Include="Models\TokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationService.cs" />
     <Compile Include="Services\IApplicationService.cs" />
+    <Compile Include="Services\ILogService.cs" />
+    <Compile Include="Services\ITokenService.cs" />
+    <Compile Include="Services\LogService.cs" />
+    <Compile Include="Services\TokenService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
