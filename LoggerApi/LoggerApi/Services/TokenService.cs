@@ -44,8 +44,8 @@ namespace LoggerApi.Services
 
         public bool ValidateToken(Guid tokenId)
         {
-
-            var token = _repository.GetById<Token>(tokenId);
+            var filter = new Dictionary<string, Guid> {{"AccessToken", tokenId}};
+            var token = _repository.WhereAllEq<Token>(filter).FirstOrDefault();
             if (token != null && !(DateTime.Now > token.ExpiresOn))
             {
                 token.ExpiresOn = token.ExpiresOn.AddSeconds(900); //TODO: Configure this in DB

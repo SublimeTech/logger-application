@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
+using LoggerApi.Models;
 using LoggerApi.Models.Entities;
 using LoggerApi.Models.Repositories;
 using LoggerApi.Services;
@@ -26,9 +27,9 @@ namespace LoggerApi.Controllers
             return Ok("Success");
         }
 
-        public IHttpActionResult Post([FromBody] string displayName)
+        public IHttpActionResult Post([FromBody] ApplicationNameModel model)
         {
-            var application = _appService.CreateNewApplication(displayName);
+            var application = _appService.CreateNewApplication(model.DisplayName);
             if (application == null)
             {
                 return BadRequest();
