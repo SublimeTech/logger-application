@@ -7,7 +7,6 @@
         var level = $('#level').val();
         var logger = $('#logger').val();
         var message = $('#message').val();
-        debugger;
         var applicationId = sessionStorage.getItem('applicationId');
         var token = sessionStorage.getItem('token');
         if (applicationId && token) {
@@ -28,11 +27,9 @@
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 error: function (jqXhr, textStatus, errorThrown) {
-                    debugger;
                     alert(errorThrown);
                 },
                 success: function (result) {
-                    debugger;
                     if (result) {
                         alert('Message logged succesfully');
                     } else {

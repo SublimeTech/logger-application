@@ -12,7 +12,7 @@ namespace LoggerApi.ActionFilters
 {
     public class AuthorizationRequiredAttribute : ActionFilterAttribute
     {
-        private const string Authorization = "Authorization";
+        private readonly string Authorization = "Authorization";
 
         public override void OnActionExecuting(HttpActionContext filterContext)
         {

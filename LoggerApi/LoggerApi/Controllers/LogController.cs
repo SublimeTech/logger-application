@@ -20,6 +20,7 @@ namespace LoggerApi.Controllers
         }
 
         [AuthorizationRequired]
+        [Throttle]
         public IHttpActionResult Post([FromBody] LogModel model)
         {
             //TODO: Decorate model with restrinctions

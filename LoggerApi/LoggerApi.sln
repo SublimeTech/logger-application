@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerApi", "LoggerApi\Logg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerMvcClient", "LoggerMvcClient\LoggerMvcClient.csproj", "{05A1EFAE-37DC-4BF0-BDD2-FB198ACB4834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{8F81106C-6D13-4B92-9629-8D349155994B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{05A1EFAE-37DC-4BF0-BDD2-FB198ACB4834}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05A1EFAE-37DC-4BF0-BDD2-FB198ACB4834}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05A1EFAE-37DC-4BF0-BDD2-FB198ACB4834}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F81106C-6D13-4B92-9629-8D349155994B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F81106C-6D13-4B92-9629-8D349155994B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F81106C-6D13-4B92-9629-8D349155994B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F81106C-6D13-4B92-9629-8D349155994B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
