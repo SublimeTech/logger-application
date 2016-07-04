@@ -23,10 +23,9 @@ namespace LoggerApi.Controllers
         [Throttle]
         public IHttpActionResult Post([FromBody] LogModel model)
         {
-            //TODO: Decorate model with restrinctions
-            if (model == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var logId =_logService.Log(model);
             return Ok(new { success = logId != 0 });

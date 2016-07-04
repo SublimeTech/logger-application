@@ -29,12 +29,16 @@ namespace LoggerApi.Controllers
 
         public IHttpActionResult Post([FromBody] ApplicationNameModel model)
         {
-            var application = _appService.CreateNewApplication(model.DisplayName);
-            if (application == null)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                var application = _appService.CreateNewApplication(model.DisplayName);
+                if (application == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(application);
             }
-            return Ok(application);
+            return BadRequest(ModelState);
         }
     }
 }

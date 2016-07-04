@@ -16,54 +16,6 @@ namespace LoggerApi.Models.Repositories
             _session = sessionManager.CurrentSession;
         }
 
-        public IEnumerable<T> QueryLike<T>(
-            IDictionary<string, string> queryFields,
-            IDictionary<string, bool> orderByFields = null)
-        {
-            var criteria = _session.CreateCriteria(typeof(T));
-
-            if (queryFields != null)
-            {
-                var disjunction = Restrictions.Disjunction();
-                foreach (var field in queryFields)
-                {
-                    disjunction.Add(Restrictions.Like(field.Key, field.Value, MatchMode.Anywhere));
-                }
-
-                criteria = criteria.Add(disjunction);
-            }
-
-            if (orderByFields != null)
-            {
-                foreach (var field in orderByFields)
-                {
-                    criteria.AddOrder(new Order(field.Key, field.Value));
-                }
-            }
-
-            return criteria.List<T>();
-        }
-
-        public IEnumerable<T> QueryOr<T>(IEnumerable<Tuple<string, object>> queryFields)
-        {
-            var criteria = _session.CreateCriteria(typeof(T));
-            var disjunction = Restrictions.Disjunction();
-
-            foreach (var queryField in queryFields)
-            {
-                disjunction.Add(Restrictions.Eq(queryField.Item1, queryField.Item2));
-            }
-
-            return criteria.Add(disjunction).List<T>();
-        }
-
-        public IEnumerable<T> WhereGe<T>(string field, object value)
-        {
-            var criteria = _session.CreateCriteria(typeof(T));
-            criteria.Add(Restrictions.Ge(field, value));
-            return criteria.List<T>();
-        }
-
         public IEnumerable<T> WhereAllEq<T>(IDictionary queryFields, IDictionary<string, bool> orderByFields = null)
         {
             var criteria = _session.CreateCriteria(typeof(T));
@@ -115,15 +67,6 @@ namespace LoggerApi.Models.Repositories
             }
         }
 
-        public void Merge<T>(T obj) where T : class
-        {
-            using (var tx = _session.BeginTransaction())
-            {
-                _session.Merge(obj);
-                tx.Commit();
-            }
-        }
-
         public T GetById<T>(object id)
         {
             return _session.Get<T>(id);
@@ -132,25 +75,6 @@ namespace LoggerApi.Models.Repositories
         public object GetById(Type targetType, object id)
         {
             return _session.Get(targetType, id);
-        }
-
-        public T Load<T>(object id)
-        {
-            return _session.Load<T>(id);
-        }
-
-        public IList<T> GetAll<T>(IDictionary<string, bool> orderByFields = null)
-        {
-            var criteria = _session.CreateCriteria(typeof(T));
-
-            if (orderByFields == null) return criteria.List<T>();
-
-            foreach (var field in orderByFields)
-            {
-                criteria.AddOrder(new Order(field.Key, field.Value));
-            }
-
-            return criteria.List<T>();
         }
 
         public void Save<T>(T obj)
