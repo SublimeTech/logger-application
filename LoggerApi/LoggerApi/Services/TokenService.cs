@@ -22,7 +22,11 @@ namespace LoggerApi.Services
         {
             var token = Guid.NewGuid();
             DateTime issuedOn = DateTime.Now;
-            DateTime expiredOn = DateTime.Now.AddSeconds(900); //TODO: Configure this in DB
+
+            var sessionConfig = _repository.WhereAllEq<SessionConfig>(new Dictionary<object, object>()).FirstOrDefault();
+            if (sessionConfig == null) return null;
+
+            DateTime expiredOn = DateTime.Now.AddSeconds(sessionConfig.SessionLifeTime); 
             var tokenEntity = new Token
             {
                 ApplicationId = applicationId,

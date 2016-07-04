@@ -150,6 +150,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Models\Entities\Application.hbm.xml" />
     <EmbeddedResource Include="Models\Entities\Token.hbm.xml" />
+    <EmbeddedResource Include="Models\Entities\SessionConfig.hbm.xml" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -192,6 +193,7 @@
     <Compile Include="Models\ApplicationNameModel.cs" />
     <Compile Include="Models\Entities\Application.cs" />
     <Compile Include="Models\Entities\Log.cs" />
+    <Compile Include="Models\Entities\SessionConfig.cs" />
     <Compile Include="Models\Entities\Token.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\Mappers\ApplicationMapper.cs" />

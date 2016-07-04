@@ -17,7 +17,7 @@ namespace LoggerApi.ActionFilters
         private readonly string _authorization = "Authorization";
         private string _rateLimitedKey = string.Empty;
         private readonly int MINUTE = 60;
-        private readonly int FIVE_MINUTES = 60;
+        private readonly int FIVE_MINUTES = 300;
         private readonly int API_CALLS_ALLOWED = 60;
 
         public override void OnActionExecuting(HttpActionContext filterContext)
