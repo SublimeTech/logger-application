@@ -16,15 +16,21 @@ namespace LoggerApi.Controllers
 {
     public class AuthController : ApiController
     {
-        private readonly IRepository _repository;
+        /// <summary>
+        /// Services that will encapsule all the token functionality e.g GenerateToken, ValidateToken.
+        /// </summary>
+        /// <returns></returns>
         private readonly ITokenService _tokenService;
 
-        public AuthController(IRepository repository, ITokenService tokenService)
+        public AuthController(ITokenService tokenService)
         {
-            _repository = repository;
             _tokenService = tokenService;
         }
 
+        /// <summary>
+        /// Return a Token to an authenticated client to enable log api calls.
+        /// </summary>
+        /// <returns></returns>
         [LoggerApiAuthenticationFilter]
         public IHttpActionResult Post()
         {

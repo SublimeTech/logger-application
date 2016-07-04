@@ -18,6 +18,12 @@ namespace LoggerApi.Services
             _repository = repository;
         }
 
+        /// <summary>
+        ///  Function to generate unique token with expiry against the provided applicationId.
+        ///  Also add a record in database for generated token.
+        /// </summary>
+        /// <param name="applicationId"></param>
+        /// <returns></returns>
         public TokenModel GenerateToken(string applicationId)
         {
             var token = Guid.NewGuid();
@@ -46,6 +52,11 @@ namespace LoggerApi.Services
             return tokenModel;
         }
 
+        /// <summary>
+        /// Function to validate token against expiry and existance in database.
+        /// </summary>
+        /// <param name="tokenId"></param>
+        /// <returns></returns>
         public bool ValidateToken(Guid tokenId)
         {
             var filter = new Dictionary<string, Guid> {{"AccessToken", tokenId}};
@@ -59,6 +70,10 @@ namespace LoggerApi.Services
             return false;
         }
 
+        /// <summary>
+        /// Method to kill the provided token id.
+        /// </summary>
+        /// <param name="tokenId"></param>
         public bool Kill(string tokenId)
         {
             var token = _repository.GetById<Token>(tokenId);

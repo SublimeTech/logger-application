@@ -15,7 +15,7 @@ namespace LoggerApi.Services
         TokenModel GenerateToken(string applicationId);
 
         /// <summary>
-        /// Function to validate token againt expiry and existance in database.
+        /// Function to validate token against expiry and existance in database.
         /// </summary>
         /// <param name="tokenId"></param>
         /// <returns></returns>

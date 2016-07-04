@@ -10,11 +10,18 @@ using LoggerApi.Services;
 
 namespace LoggerApi.ActionFilters
 {
+    /// <summary>
+    /// Custom Filter that will check for a valid token in the headers. If the token is not valid will send a 403 error.
+    /// </summary>
     public class AuthorizationRequiredAttribute : ActionFilterAttribute
     {
         private readonly string _authorization = "Authorization";
         private readonly string _message = "Invalid access token";
 
+        /// <summary>
+        /// Get the token from the headers and validate it.
+        /// </summary>
+        /// <param name="filterContext"></param>
         public override void OnActionExecuting(HttpActionContext filterContext)
         {
             //  Get API key provider
@@ -50,6 +57,10 @@ namespace LoggerApi.ActionFilters
 
         }
 
+        /// <summary>
+        /// Creates an error response.
+        /// </summary>
+        /// <param name="filterContext"></param>
         private void InvalidTokenResponse(HttpActionContext filterContext)
         {
             var response = new HttpResponseMessage(HttpStatusCode.Forbidden);

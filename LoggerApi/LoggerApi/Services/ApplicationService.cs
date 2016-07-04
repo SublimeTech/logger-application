@@ -12,14 +12,29 @@ namespace LoggerApi.Services
 {
     public class ApplicationService : IApplicationService
     {
-        private IRepository _repository;
-        private IApplicationMapper _mapper;
+        /// <summary>
+        /// Repository that handles all the DB operations.
+        /// </summary>
+        /// <returns></returns>
+        private readonly IRepository _repository;
+
+        /// <summary>
+        /// Service that map application models with it entity.
+        /// </summary>
+        /// <returns></returns>
+        private readonly IApplicationMapper _mapper;
 
         public ApplicationService(IRepository repository, IApplicationMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
+
+        /// <summary>
+        /// Creates a new Application.
+        /// </summary>
+        /// <param name="displayName">The name of the application.</param>
+        /// <returns></returns>
         public ApplicationModel CreateNewApplication(string displayName)
         {
             if (string.IsNullOrEmpty(displayName))
@@ -46,6 +61,12 @@ namespace LoggerApi.Services
             return model;
         }
 
+        /// <summary>
+        /// Checks if an application is authenticated.
+        /// </summary>
+        /// <param name="applicationId">The application id.</param>
+        /// <param name="secret">The application secret.</param>
+        /// <returns></returns>
         public string Authenticate(string applicationId, string secret)
         {
             var application = _repository.GetById<Application>(applicationId);

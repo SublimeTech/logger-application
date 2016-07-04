@@ -10,6 +10,10 @@ namespace LoggerApi.Services
 {
     public class LogService : ILogService
     {
+        /// <summary>
+        /// Repository that handles all the DB operations.
+        /// </summary>
+        /// <returns></returns>
         private readonly IRepository _repository;
 
         public LogService(IRepository repository)
@@ -17,6 +21,11 @@ namespace LoggerApi.Services
             _repository = repository;
         }
 
+        /// <summary>
+        /// Logs a new message.
+        /// </summary>
+        /// <param name="model">The log model.</param>
+        /// <returns></returns>
         public int Log(LogModel model)
         {
             var log = new Log()

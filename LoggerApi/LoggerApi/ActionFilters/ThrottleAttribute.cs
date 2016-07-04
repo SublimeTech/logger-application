@@ -10,6 +10,9 @@ using System.Web.Http.Filters;
 
 namespace LoggerApi.ActionFilters
 {
+    /// <summary>
+    /// Custom Filter that will limit the rate of api calls to a given number in a given time.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class ThrottleAttribute : ActionFilterAttribute
     {
@@ -20,6 +23,11 @@ namespace LoggerApi.ActionFilters
         private readonly int FIVE_MINUTES = 300;
         private readonly int API_CALLS_ALLOWED = 60;
 
+        /// <summary>
+        /// Limit the API calls for an application to 60 in 1 minute.
+        /// If the limit is reached, will avoid any call for the next five minutes.
+        /// </summary>
+        /// <param name="filterContext"></param>
         public override void OnActionExecuting(HttpActionContext filterContext)
         {
             if (filterContext.Request.Headers.Contains(_authorization))
@@ -69,6 +77,12 @@ namespace LoggerApi.ActionFilters
             }
         }
 
+        /// <summary>
+        /// Creates a Cache entry that will be used for the rate limit logic.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="count"></param>
+        /// <param name="seconds"></param>
         private void CreateCacheEntry(string key, int count, int seconds)
         {
             HttpRuntime.Cache.Insert(key, count, null, DateTime.UtcNow.AddSeconds(seconds), Cache.NoSlidingExpiration, CacheItemPriority.Low, null);

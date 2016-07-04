@@ -47,7 +47,7 @@ namespace LoggerApi.Filters
         }
 
         /// <summary>
-        /// Virtual method.Can be overriden with the custom Authorization.
+        /// Virtual method. Can be overriden with the custom Authorization.
         /// </summary>
         /// <param name="applicationId"></param>
         /// <param name="secret"></param>
@@ -82,7 +82,7 @@ namespace LoggerApi.Filters
 
 
         /// <summary>
-        /// Send the Authentication Challenge request
+        /// Send the Unauthorized Response
         /// </summary>
         /// <param name="filterContext"></param>
         private static void SetUnAuthorizedResponse(HttpActionContext filterContext)

@@ -15,7 +15,11 @@ namespace LoggerApi.Controllers
 {
     public class RegisterController : ApiController
     {
-        private IApplicationService _appService;
+        /// <summary>
+        /// Service that will encapsule all the application functionality e.g Create a new application.
+        /// </summary>
+        /// <returns></returns>
+        private readonly IApplicationService _appService;
 
         public RegisterController(IApplicationService appService)
         {
@@ -27,6 +31,11 @@ namespace LoggerApi.Controllers
             return Ok("Success");
         }
 
+        /// <summary>
+        /// Use application service to create a new application and returns an application json object
+        /// </summary>
+        /// <param name="model">A model that contains the display name of the application.</param>
+        /// <returns></returns>
         public IHttpActionResult Post([FromBody] ApplicationNameModel model)
         {
             if (ModelState.IsValid)

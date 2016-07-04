@@ -12,6 +12,10 @@ namespace LoggerApi.Controllers
 {
     public class LogController : ApiController
     {
+        /// <summary>
+        /// Service that will encapsule all the log functionality e.g Log a message.
+        /// </summary>
+        /// <returns></returns>
         private readonly ILogService _logService;
 
         public LogController(ILogService logService)
@@ -19,6 +23,11 @@ namespace LoggerApi.Controllers
             _logService = logService;
         }
 
+        /// <summary>
+        /// Logs a message in the DB.
+        /// </summary>
+        /// <param name="model">The log model that is received from the client.</param>
+        /// <returns></returns>
         [AuthorizationRequired]
         [Throttle]
         public IHttpActionResult Post([FromBody] LogModel model)
