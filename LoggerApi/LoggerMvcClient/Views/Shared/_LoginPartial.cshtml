@@ -16,6 +16,7 @@
 @*else*@
 @*{*@
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register Application", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Register Application", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "not-display" })</li>
+        <li>@Html.ActionLink("Logout", "Index", "Home", routeValues: null, htmlAttributes: new { id = "logoutLink", @class = "not-display" })</li>
     </ul>
 @*}*@

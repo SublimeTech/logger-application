@@ -26,3 +26,7 @@ textarea {
 .not-valid {
     background-color: pink;
 }
+
+.not-display {
+    display: none !important;
+}

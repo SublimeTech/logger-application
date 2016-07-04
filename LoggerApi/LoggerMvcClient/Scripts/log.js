@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    checkAuthentication();
+    redirectToHomeIfNotAuth();
 
     $('#logBtn').off('click').click(function (e) {
         e.preventDefault();
@@ -55,7 +55,7 @@
     });
 });
 
-function checkAuthentication() {
+function redirectToHomeIfNotAuth() {
     var token = sessionStorage.getItem('token');
     if (!token) {
         location.replace('/Home');
