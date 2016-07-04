@@ -12,7 +12,8 @@ namespace LoggerApi.ActionFilters
 {
     public class AuthorizationRequiredAttribute : ActionFilterAttribute
     {
-        private readonly string Authorization = "Authorization";
+        private readonly string _authorization = "Authorization";
+        private readonly string _message = "Invalid access token";
 
         public override void OnActionExecuting(HttpActionContext filterContext)
         {
@@ -20,24 +21,22 @@ namespace LoggerApi.ActionFilters
             var tokenService = filterContext.ControllerContext.Configuration
             .DependencyResolver.GetService(typeof(ITokenService)) as ITokenService;
 
-            if (filterContext.Request.Headers.Contains(Authorization))
+            if (filterContext.Request.Headers.Contains(_authorization))
             {
-                var tokenValue = filterContext.Request.Headers.GetValues(Authorization).First();
+                var tokenValue = filterContext.Request.Headers.GetValues(_authorization).First();
                 Guid token;
                 Guid.TryParse(tokenValue, out token);
 
                 if (token == Guid.Empty)
                 {
-                    var responseMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
-                    filterContext.Response = responseMessage;
+                    InvalidTokenResponse(filterContext);
                 }
                 else
                 {
                     // Validate Token
                     if (tokenService != null && !tokenService.ValidateToken(token))
                     {
-                        var responseMessage = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-                        filterContext.Response = responseMessage;
+                        InvalidTokenResponse(filterContext);
                     }
                 }
                 
@@ -49,6 +48,13 @@ namespace LoggerApi.ActionFilters
 
             base.OnActionExecuting(filterContext);
 
+        }
+
+        private void InvalidTokenResponse(HttpActionContext filterContext)
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Forbidden);
+            response.Content = new StringContent(_message);
+            filterContext.Response = response;
         }
     }
 }

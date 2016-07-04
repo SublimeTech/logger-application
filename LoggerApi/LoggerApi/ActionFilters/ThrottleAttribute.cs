@@ -13,7 +13,7 @@ namespace LoggerApi.ActionFilters
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class ThrottleAttribute : ActionFilterAttribute
     {
-        private readonly string _message = "Rate limit exceded";
+        private readonly string _message = "Application Rate Limit Exceeded";
         private readonly string _authorization = "Authorization";
         private string _rateLimitedKey = string.Empty;
         private readonly int MINUTE = 60;
