@@ -17,7 +17,7 @@ namespace LoggerApi.Controllers
     public class AuthController : ApiController
     {
         /// <summary>
-        /// Services that will encapsule all the token functionality e.g GenerateToken, ValidateToken.
+        /// Service that will encapsule all the token functionality e.g GenerateToken, ValidateToken.
         /// </summary>
         /// <returns></returns>
         private readonly ITokenService _tokenService;
